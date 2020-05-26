@@ -3,20 +3,22 @@
 from tkinter import *
 import datetime
 today = datetime.date.today()
+month = today.month
+day = today.day
+answer = '<<오늘은 {}월 {}일 입니다>>'.format(month, day)
 
 def createNewWindow():
   newWindow = Toplevel()
   newWindowLabel = Label(newWindow, text='오늘의 결과')
   newWindowLabel.grid()
   newWindow.geometry('320x320')
-  
-  
+   
 window = Tk()
 window.title('Baseball Highlight')
-window.geometry('320x80')
 
-windowLabel = Label(window, text = '오늘은 _월 _일 입니다.')
-windowLabel.grid()
+windowLabel = Label(window, text = '오늘은')
+windowLabel.configure(text = answer)
+windowLabel.grid(row = 0, column = 0)
 
 monthEntry = Entry(window, width=10)
 dayEntry = Entry(window, width=10)
