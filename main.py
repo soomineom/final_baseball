@@ -39,6 +39,8 @@ def createNewWindow():
   newsHead4 = Label(newsFrame, text="{}".format(news[3])).pack()
   newsHead5 = Label(newsFrame, text="{}".format(news[4])).pack()
   newsHead6 = Label(newsFrame, text="{}".format(news[5])).pack()
+  newsHead7 = Label(newsFrame, text="{}".format(news[6])).pack()
+  newsHead8 = Label(newsFrame, text="{}".format(news[7])).pack()
 
 
   buttonFrame = Frame(newWindow)
