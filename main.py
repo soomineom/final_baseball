@@ -9,7 +9,7 @@ def createNewWindow():
   newWindow = Toplevel()
   newCanvas = Canvas(newWindow, height=400, width=600)
   newCanvas.pack()
-  resultLabel = Label(newWindow, text = '<<{}월 {}일 오늘의 결과>>'.format(month, day))
+  resultLabel = Label(newWindow, text = '<<{}월 {}일 오늘의 결과>>'.format(month, day)) #입력한 날짜로 바뀌게 수정 필요
   resultLabel.place(rely=0.03)
   vcLabel = Label(newWindow, text = '[승리한 Team]')
   vcLabel.place(rely=0.1)
