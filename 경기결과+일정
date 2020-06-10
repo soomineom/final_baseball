@@ -1,0 +1,15 @@
+import requests
+from bs4 import BeautifulSoup
+import re
+
+webpage = requests.get('https://sports.news.naver.com/kbaseball/schedule/index.nhn')
+soup = BeautifulSoup(webpage.content, 'html.parser')
+
+print()
+sch_list=soup.select('#calendarWrap > div:nth-child(7) > table > tbody > tr > td')
+#div_nth-child(7) 에서 숫자7이 7일을 의미. 이 페이지에서는 6월7일
+#7 숫자를 바꿔서 하면 다른 날짜들도 불러올 수 있어서 수정 할 예정
+#결과 있는날은 결과 불러오고 아직 오지 않은 날짜는 스코어 빼고 출력됨
+#경기 없는날 수정필요
+for i in range(4):
+    print(sch_list[i].text.strip())
