@@ -10,7 +10,7 @@ day = today.day
 webpage = requests.get('https://sports.news.naver.com/kbaseball/schedule/index.nhn')
 soup = BeautifulSoup(webpage.content, 'html.parser')
 
-#div_nth-child(7) 에서 숫자7이 7일을 의미. 이 페이지에서는 6월7일
+#div_nth-child(14) 에서 숫자14이 14일을 의미. 이 페이지에서는 6월14일
 date_list=soup.select('#calendarWrap > div:nth-child(14) > table > tbody > tr:nth-child(1) > td:nth-child(1)') #div안 숫자가 날짜
 
 sch_list1=soup.select('#calendarWrap > div:nth-child(14) > table > tbody > tr:nth-child(1) > td:nth-child(3)')
