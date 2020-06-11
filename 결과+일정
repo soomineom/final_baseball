@@ -1,0 +1,47 @@
+import requests
+from bs4 import BeautifulSoup
+import re
+import datetime
+
+today = datetime.date.today()
+month = today.month
+day = today.day
+
+webpage = requests.get('https://sports.news.naver.com/kbaseball/schedule/index.nhn')
+soup = BeautifulSoup(webpage.content, 'html.parser')
+
+#div_nth-child(7) 에서 숫자7이 7일을 의미. 이 페이지에서는 6월7일
+date_list=soup.select('#calendarWrap > div:nth-child(14) > table > tbody > tr:nth-child(1) > td:nth-child(1)') #div안 숫자가 날짜
+
+sch_list1=soup.select('#calendarWrap > div:nth-child(14) > table > tbody > tr:nth-child(1) > td:nth-child(3)')
+sch_list2=soup.select('#calendarWrap > div:nth-child(14) > table > tbody > tr:nth-child(2) > td:nth-child(2)')
+sch_list3=soup.select('#calendarWrap > div:nth-child(14) > table > tbody > tr:nth-child(3) > td:nth-child(2)')
+sch_list4=soup.select('#calendarWrap > div:nth-child(14) > table > tbody > tr:nth-child(4) > td:nth-child(2)')
+sch_list5=soup.select('#calendarWrap > div:nth-child(14) > table > tbody > tr:nth-child(5) > td:nth-child(2)')
+
+#경기 없는 날
+#noGame = soup.find_all('td', {'rowspan':'1'})
+
+
+#결과 있는 날은 결과를 불러오고 아직 경기를 하지 않은 날짜는 스코어 빼고 출력
+if ( len(sch_list2)==0 |len(sch_list3)==0 | len(sch_list4)==0 | len(sch_list5) == 0 ): #경기 없는 날
+    for k in range(len(date_list)): #날짜 출력
+        print(date_list[k].text)
+    for i in range(len(sch_list1)):
+        print(sch_list1[i].text.strip())
+
+else: #경기 있는 날
+    for k in range(len(date_list)): #날짜 출력
+        print(date_list[k].text)
+    for i in range(1): #경기 결과/일정 출력
+        print('------')
+        print(sch_list1[i].text.strip())
+        print('------')
+        print(sch_list2[i].text.strip())
+        print('------')
+        print(sch_list3[i].text.strip())
+        print('------')
+        print(sch_list4[i].text.strip())
+        print('------')
+        print(sch_list5[i].text.strip())
+
