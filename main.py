@@ -32,10 +32,11 @@ def createNewWindow():
               newsList.append(ns)
 
       for k in range(len(newsList)):
-        newsHead = Button(newsFrame, text="{}".format(newsList[k])).pack()
+        newsHead = Label(newsFrame, text="{}".format(newsList[k])).pack()
 
 
   #뉴스 출력/프레임
+
   newsLabel = Label(newWindow, text = '<<{}월 {}일 오늘 실시간 인기뉴스>>'.format(month, day))
   newsLabel.place(rely=0.4)
   newsFrame = Frame(newWindow, bg='#eaeaea')
