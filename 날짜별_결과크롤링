@@ -1,0 +1,59 @@
+import requests
+from bs4 import BeautifulSoup
+import re
+webpage = requests.get('https://sports.news.naver.com/kbaseball/schedule/index.nhn')
+soup = BeautifulSoup(webpage.content, 'html.parser')
+
+i = int(input('날짜:'))
+def get_result():
+    results1 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(1) > td:nth-child(3)'.format(i))
+    resList1=[]
+    for res in results1:
+        res = str(res)
+        res = re.sub('<.+?>', '', res, 0).strip()
+        resList1.append(res)
+
+    results2 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(2) > td:nth-child(2)'.format(i))
+    resList2=[]
+    for res in results2:
+        res = str(res)
+        res = re.sub('<.+?>', '', res, 0).strip()
+        resList2.append(res)
+
+    results3 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(3) > td:nth-child(2)'.format(i))
+    resList3=[]
+    for res in results3:
+        res = str(res)
+        res = re.sub('<.+?>', '', res, 0).strip()
+        resList3.append(res)
+
+    results4 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(4) > td:nth-child(2)'.format(i))
+    resList4=[]
+    for res in results4:
+        res = str(res)
+        res = re.sub('<.+?>', '', res, 0).strip()
+        resList4.append(res)
+
+    results5 = soup.select(
+        '#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(5) > td:nth-child(2)'.format(i))
+    resList5 = []
+    for res in results5:
+        res = str(res)
+        res = re.sub('<.+?>', '', res, 0).strip()
+        resList5.append(res)
+
+    print(",".join(map(str, resList1)))
+    print('-------')
+    print(",".join(map(str, resList2)))
+    print('-------')
+    print(",".join(map(str, resList3)))
+    print('-------')
+    print(",".join(map(str, resList4)))
+    print('-------')
+    print(",".join(map(str, resList5)))
+
+
+date_list=soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(1) > td:nth-child(1)'.format(i))
+for k in range(len(date_list)):  # 날짜 출력
+    print(date_list[k].text)
+get_result()
