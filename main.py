@@ -23,21 +23,17 @@ def createNewWindow():
   def newsCrawler():
       webpage = requests.get('https://sports.news.naver.com/kbaseball/news/index.nhn?isphoto=N&type=popular')
       soup = BeautifulSoup(webpage.content, 'html.parser')
-      news = soup.select(".aside_rank_news>ul> li > a > span")
-      newsLink = soup.select("#_ranking_news_list_0 > li:nth-child(1) > a")
-      for k in range(10):
-          news[k] = str(news[k].text)
-      news_list = []
+      newsList = []
       for i in range(10):
-          news_list.append(news[i])
-      newsHead1 = Button(newsFrame, text="{}".format(news[0])).pack()
-      newsHead2 = Button(newsFrame, text="{}".format(news[1])).pack()
-      newsHead3 = Button(newsFrame, text="{}".format(news[2])).pack()
-      newsHead4 = Button(newsFrame, text="{}".format(news[3])).pack()
-      newsHead5 = Button(newsFrame, text="{}".format(news[4])).pack()
-      newsHead6 = Button(newsFrame, text="{}".format(news[5])).pack()
-      newsHead7 = Button(newsFrame, text="{}".format(news[6])).pack()
-      newsHead8 = Button(newsFrame, text="{}".format(news[7])).pack()
+          news = soup.select("#_ranking_news_list_0 > li:nth-child({0})".format(i))
+          for ns in news:
+              ns = str(ns)
+              ns = re.sub('<.+?>', '', ns, 0).strip()
+              newsList.append(ns)
+
+      for k in range(len(newsList)):
+        newsHead = Button(newsFrame, text="{}".format(newsList[k])).pack()
+
 
   #뉴스 출력/프레임
   newsLabel = Label(newWindow, text = '<<{}월 {}일 오늘 실시간 인기뉴스>>'.format(month, day))
