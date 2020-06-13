@@ -1,33 +1,56 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-webpage = requests.get('https://sports.news.naver.com/kbaseball/schedule/index.nhn')
+import datetime
+
+#url에 넣을 날짜만들기 위한 코드
+today = datetime.date.today()
+year = today.year
+month = today.month
+day = today.day
+year_s = str(year)
+month_noZero = str(month)
+month_s = '0'+month_noZero
+day_s = str(day)
+date = year_s+month_s+day_s
+
+m = int(input('월:'))
+if m < 10:
+    m = str(m)
+    m = '0'+m
+else:
+    m = str(m)
+
+d = input('일:')
+
+
+url='https://sports.news.naver.com/kbaseball/schedule/index.nhn?date={}&month={}&year=2020&teamCode='.format(date,m)
+webpage = requests.get(url)
 soup = BeautifulSoup(webpage.content, 'html.parser')
 
-i = int(input('날짜:'))
 def get_result():
-    results1 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(1) > td:nth-child(3)'.format(i))
+    results1 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(1) > td:nth-child(3)'.format(d))
     resList1=[]
     for res in results1:
         res = str(res)
         res = re.sub('<.+?>', '', res, 0).strip()
         resList1.append(res)
 
-    results2 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(2) > td:nth-child(2)'.format(i))
+    results2 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(2) > td:nth-child(2)'.format(d))
     resList2=[]
     for res in results2:
         res = str(res)
         res = re.sub('<.+?>', '', res, 0).strip()
         resList2.append(res)
 
-    results3 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(3) > td:nth-child(2)'.format(i))
+    results3 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(3) > td:nth-child(2)'.format(d))
     resList3=[]
     for res in results3:
         res = str(res)
         res = re.sub('<.+?>', '', res, 0).strip()
         resList3.append(res)
 
-    results4 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(4) > td:nth-child(2)'.format(i))
+    results4 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(4) > td:nth-child(2)'.format(d))
     resList4=[]
     for res in results4:
         res = str(res)
@@ -35,7 +58,7 @@ def get_result():
         resList4.append(res)
 
     results5 = soup.select(
-        '#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(5) > td:nth-child(2)'.format(i))
+        '#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(5) > td:nth-child(2)'.format(d))
     resList5 = []
     for res in results5:
         res = str(res)
@@ -53,7 +76,7 @@ def get_result():
     print(",".join(map(str, resList5)))
 
 
-date_list=soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(1) > td:nth-child(1)'.format(i))
+date_list=soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(1) > td:nth-child(1)'.format(d))
 for k in range(len(date_list)):  # 날짜 출력
     print(date_list[k].text)
 get_result()
