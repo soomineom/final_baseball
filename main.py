@@ -8,16 +8,14 @@ import urllib
 
 def createNewWindow():
   newWindow = Toplevel()
-  newCanvas = Canvas(newWindow, height=400, width=600)
+  newCanvas = Canvas(newWindow, height=400, width=400)
   newCanvas.pack()
-  resultLabel = Label(newWindow, text = '<<{}월 {}일 일정/결과>>'.format(mm.get(), dd.get()))
-  resultLabel.place(rely=0.03)
-  vcLabel = Label(newWindow, text = '[일정/결과]')
-  vcLabel.place(rely=0.1)
-  vcFrame = Frame(newWindow, bg='#eaeaea')
-  vcFrame.place(relx=0.5, rely=0.15, relwidth=0.9, relheight=0.15, anchor='n')
-  #eLabel = Label(newWindow, text = '*자세한 경기 결과는 구단별 엠블럼 클릭')
-  #eLabel.place(rely=0.3)
+  titleLabel = Label(newWindow, text = '<<{}월 {}일 오늘의 일정/결과>>'.format(mm.get(), dd.get()))
+  titleLabel.place(rely=0.03)
+  resultFrame = Frame(newWindow, bg='#eaeaea')
+  resultFrame.place(relx=0.5, rely=0.08, relwidth=0.9, relheight=0.3, anchor='n')
+  resultLabel = Label(resultFrame, text = '[일정/결과]') #나중에 수정
+  resultLabel.place(relx=0.5, rely=0.1, anchor='n') #나중에 수정
 
   # 뉴스 크롤링
   def newsCrawler():
@@ -36,21 +34,19 @@ def createNewWindow():
 
 
   #뉴스 출력/프레임
-
   newsLabel = Label(newWindow, text = '<<{}월 {}일 오늘 실시간 인기뉴스>>'.format(mm.get(), dd.get()))
   newsLabel.place(rely=0.4)
   newsFrame = Frame(newWindow, bg='#eaeaea')
   newsFrame.place(relx=0.5, rely=0.45, relwidth=0.9, relheight=0.4, anchor='n')
   newsCrawler()
 
-
   buttonFrame = Frame(newWindow)
   buttonFrame.place(relx=0.2, rely=0.9, relwidth=0.8, relheight=0.05)
-  moveButton = Button(buttonFrame, text = '다른 날 보기')
-  moveButton.place(relx=0, relwidth=0.3, relheight=1)
-  rankButton = Button (buttonFrame, text = '순위표 보기')
-  rankButton.place(relx=0.5, relwidth=0.3, relheight=1)
-
+  button1 = Button(buttonFrame, text = '다른 날 보기', command = root)
+  button1.place(relx=0, relwidth=0.3, relheight=1)
+  button2 = Button (buttonFrame, text = '순위표 보기')
+  button2.place(relx=0.5, relwidth=0.3, relheight=1)
+                  
 #메인창
 root = Tk()
 root.title('2020 Baseball Highlights')
