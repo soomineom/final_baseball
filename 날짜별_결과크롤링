@@ -33,28 +33,28 @@ def get_result():
     resList1=[]
     for res in results1:
         res = str(res)
-        res = re.sub('<.+?>', '', res, 0).strip()
+        res = re.sub('<.+?>|\n', '', res, 0).strip()
         resList1.append(res)
 
     results2 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(2) > td:nth-child(2)'.format(d))
     resList2=[]
     for res in results2:
         res = str(res)
-        res = re.sub('<.+?>', '', res, 0).strip()
+        res = re.sub('<.+?>|\n', '', res, 0).strip()
         resList2.append(res)
 
     results3 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(3) > td:nth-child(2)'.format(d))
     resList3=[]
     for res in results3:
         res = str(res)
-        res = re.sub('<.+?>', '', res, 0).strip()
+        res = re.sub('<.+?>|\n', '', res, 0).strip()
         resList3.append(res)
 
     results4 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(4) > td:nth-child(2)'.format(d))
     resList4=[]
     for res in results4:
         res = str(res)
-        res = re.sub('<.+?>', '', res, 0).strip()
+        res = re.sub('<.+?>|\n', '', res, 0).strip()
         resList4.append(res)
 
     results5 = soup.select(
@@ -62,7 +62,7 @@ def get_result():
     resList5 = []
     for res in results5:
         res = str(res)
-        res = re.sub('<.+?>', '', res, 0).strip()
+        res = re.sub('<.+?>|\n', '', res, 0).strip()
         resList5.append(res)
 
     print(",".join(map(str, resList1)))
