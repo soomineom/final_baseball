@@ -10,7 +10,7 @@ def createNewWindow():
   newWindow = Toplevel()
   newCanvas = Canvas(newWindow, height=400, width=600)
   newCanvas.pack()
-  resultLabel = Label(newWindow, text = '<<{}월 {}일 일정/결과>>'.format(monthGet, dayGet))
+  resultLabel = Label(newWindow, text = '<<{}월 {}일 일정/결과>>'.format(mm.get(), dd.get()))
   resultLabel.place(rely=0.03)
   vcLabel = Label(newWindow, text = '[일정/결과]')
   vcLabel.place(rely=0.1)
@@ -37,7 +37,7 @@ def createNewWindow():
 
   #뉴스 출력/프레임
 
-  newsLabel = Label(newWindow, text = '<<{}월 {}일 오늘 실시간 인기뉴스>>'.format(month, day))
+  newsLabel = Label(newWindow, text = '<<{}월 {}일 오늘 실시간 인기뉴스>>'.format(mm.get(), dd.get()))
   newsLabel.place(rely=0.4)
   newsFrame = Frame(newWindow, bg='#eaeaea')
   newsFrame.place(relx=0.5, rely=0.45, relwidth=0.9, relheight=0.4, anchor='n')
@@ -47,9 +47,9 @@ def createNewWindow():
   buttonFrame = Frame(newWindow)
   buttonFrame.place(relx=0.2, rely=0.9, relwidth=0.8, relheight=0.05)
   moveButton = Button(buttonFrame, text = '다른 날 보기')
-  moveButton.place(relwidth=0.5, relheight=1)
-  exitButton = Button (buttonFrame, text = '닫기') #닫기 후 창 종료 필요
-  exitButton.place(relx=0.7, relwidth=0.1, relheight=1)
+  moveButton.place(relx=0, relwidth=0.3, relheight=1)
+  rankButton = Button (buttonFrame, text = '순위표 보기')
+  rankButton.place(relx=0.5, relwidth=0.3, relheight=1)
 
 #메인창
 root = Tk()
@@ -68,13 +68,15 @@ windowLabel.place(relx=0.5, rely=0.3, anchor='n')
 frame = Frame(root)
 frame.place(relx=0.5, rely=0.5, relwidth=0.5, relheight=0.1, anchor='n')
 
-monthEntry = Entry(frame)
+dd = StringVar()
+mm = StringVar()
+monthEntry = Entry(frame, textvariable=mm)
 monthEntry.place(relwidth=0.2, relheight=1)
 monthLabel = Label(frame, text = '월')
 monthLabel.place(relx=0.2, relwidth=0.2, relheight=1)
 monthGet = monthEntry.get()
 
-dayEntry = Entry(frame)
+dayEntry = Entry(frame, textvariable=dd)
 dayEntry.place(relx=0.4, relwidth=0.2, relheight=1)
 dayLabel = Label(frame, text = '일')
 dayLabel.place(relx=0.6, relwidth=0.2, relheight=1)
