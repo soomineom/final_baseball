@@ -1,0 +1,32 @@
+import requests
+from bs4 import BeautifulSoup
+import re
+
+def ranking():
+    url='https://sports.news.naver.com/kbaseball/record/index.nhn?category=kbo&year=2020'
+    webpage = requests.get(url)
+    soup = BeautifulSoup(webpage.content, 'html.parser')
+
+    rankList=[]
+    for i in range(11):
+        rank = soup.select('#regularTeamRecordList_table > tr:nth-child({0}) > td.tm'.format(i))
+        for ra in rank:
+            ra = str(ra)
+            ra = re.sub('<.+?>', '', ra, 0).strip()
+            rankList.append(ra)
+
+    rankNumList=[]
+    for k in range(1,11,1):
+        rankNum = soup.select('#regularTeamRecordList_table > tr:nth-child({0}) > th'.format(k))
+        for rn in rankNum:
+            rn = str(rn)
+            rn = re.sub('<.+?>', '', rn, 0).strip()
+            rankNumList.append(rn)
+
+    print('-- 실시간 프로야구 팀 순위 --')
+    print('*순위가 같은 경우 공동순위')
+    for k in range(10):
+        print(rankNumList[k],'위:', rankList[k])
+
+ranking()
+
