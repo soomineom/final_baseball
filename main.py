@@ -10,14 +10,14 @@ def createNewWindow():
   newWindow = Toplevel()
   newCanvas = Canvas(newWindow, height=400, width=600)
   newCanvas.pack()
-  resultLabel = Label(newWindow, text = '<<{}월 {}일 오늘의 결과>>'.format(monthGet, dayGet))
+  resultLabel = Label(newWindow, text = '<<{}월 {}일 결과/일정>>'.format(monthGet, dayGet))
   resultLabel.place(rely=0.03)
-  vcLabel = Label(newWindow, text = '[오늘의 결과]')
+  vcLabel = Label(newWindow, text = '[결과/일정]')
   vcLabel.place(rely=0.1)
   vcFrame = Frame(newWindow, bg='#eaeaea')
   vcFrame.place(relx=0.5, rely=0.15, relwidth=0.9, relheight=0.15, anchor='n')
-  eLabel = Label(newWindow, text = '*자세한 경기 결과는 구단별 엠블럼 클릭')
-  eLabel.place(rely=0.3)
+  #eLabel = Label(newWindow, text = '*자세한 경기 결과는 구단별 엠블럼 클릭')
+  #eLabel.place(rely=0.3)
 
   # 뉴스 크롤링
   def newsCrawler():
