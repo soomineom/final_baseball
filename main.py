@@ -95,13 +95,12 @@ def createNewWindow():
         for href in soup.find("ul", class_="aside_news_list").find_all("li"):
             newsLink = href.find("a")["href"]
             newsLinkList.append("https://sports.news.naver.com" + newsLink)
-
+        new = 1
+        def siteOpen(): #링크 여는 함수
+            webbrowser.open(newsLinkList[k], new=new)
         for k in range(len(newsList)):
-            def siteOpen(): #해당 뉴스링크 창 열기
-                webbrowser.open(newsLinkList[k])
             newsHead = Label(newsFrame, text="{}".format(newsList[k])).grid(row=k, column=0)
-            newsLinkList[k] = Button(newsFrame, text='보기').grid(row=k, column=1) #여기서command하면 창이 그냥 다열림
-            #수정 필요
+            newsButton = Button(newsFrame, text='보기', command = siteOpen).grid(row=k, column=1)
 
 
     # 뉴스 출력/프레임
