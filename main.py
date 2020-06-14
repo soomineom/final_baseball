@@ -65,13 +65,27 @@ def createNewWindow():
             res = re.sub('<.+?>|\n', '', res, 0).strip()
             resList5.append(res)
 
+        #하루에 경기 6개인경우 필요함
+        results6 = soup.select('#calendarWrap > div:nth-child({0}) > table > tbody > tr:nth-child(6) > td:nth-child(2)'.format(d))
+        resList6=[]
+        for res in results6:
+            res = str(res)
+            res = re.sub('<.+?>|\n', '', res, 0).strip()
+            resList6.append(res)
+
         final_res = []
         final_res.append(resList1)
         final_res.append(resList2)
         final_res.append(resList3)
         final_res.append(resList4)
         final_res.append(resList5)
-        for i in range(len(final_res)):
+
+        if len(resList6) == 0: #경기가 6개가 아닌경우 마지막줄에 - 출력
+            final_res.append('-')
+        else:
+            final_res.append(resList6)
+
+        for i in range(len(final_res)): #경기 일정/결과 라벨로 출력
             schLabel = Label(resultFrame, text="{}".format(",".join(map(str,final_res[i])))).pack()
 
     resultFrame = Frame(newWindow, bg='#eaeaea')
