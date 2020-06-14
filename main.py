@@ -42,10 +42,16 @@ def createNewWindow():
 
   buttonFrame = Frame(newWindow)
   buttonFrame.place(relx=0.2, rely=0.9, relwidth=0.8, relheight=0.05)
-  button1 = Button(buttonFrame, text = '다른 날 보기', command = root)
+  button1 = Button(buttonFrame, text='순위표 보기',command = therank)
   button1.place(relx=0, relwidth=0.3, relheight=1)
-  button2 = Button (buttonFrame, text = '순위표 보기')
+  button2 = Button(buttonFrame, text='닫기')
   button2.place(relx=0.5, relwidth=0.3, relheight=1)
+
+#순위표창
+def therank():
+  rank = Toplevel()
+  rankCanvas = Canvas(rank, height=400, width=400)
+  rankCanvas.pack()
                   
 #메인창
 root = Tk()
