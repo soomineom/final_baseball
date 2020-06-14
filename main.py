@@ -96,12 +96,43 @@ def createNewWindow():
             newsLink = href.find("a")["href"]
             newsLinkList.append("https://sports.news.naver.com" + newsLink)
         new = 1
-        def siteOpen(): #링크 여는 함수
-            webbrowser.open(newsLinkList[k], new=new)
-        for k in range(len(newsList)):
-            newsHead = Label(newsFrame, text="{}".format(newsList[k])).grid(row=k, column=0)
-            newsButton = Button(newsFrame, text='보기', command = siteOpen).grid(row=k, column=1)
+        def siteOpen0(): #링크 여는 함수
+            webbrowser.open(newsLinkList[0], new=new)
+        def siteOpen1(): #링크 여는 함수
+            webbrowser.open(newsLinkList[1], new=new)
+        def siteOpen2(): #링크 여는 함수
+            webbrowser.open(newsLinkList[2], new=new)    
+        def siteOpen3(): #링크 여는 함수
+            webbrowser.open(newsLinkList[3], new=new)
+        def siteOpen4(): #링크 여는 함수
+            webbrowser.open(newsLinkList[4], new=new)
+        def siteOpen5(): #링크 여는 함수
+            webbrowser.open(newsLinkList[5], new=new)
+        def siteOpen6(): #링크 여는 함수
+            webbrowser.open(newsLinkList[6], new=new)
+        def siteOpen7(): #링크 여는 함수
+            webbrowser.open(newsLinkList[7], new=new)
+        def siteOpen8(): #링크 여는 함수
+            webbrowser.open(newsLinkList[8], new=new)
 
+        newsHead0 = Label(newsFrame, text="{}".format(newsList[0])).grid(row=0, column=0)
+        newsButton0 = Button(newsFrame, text='보기', command = siteOpen0).grid(row=0, column=1)
+        newsHead1 = Label(newsFrame, text="{}".format(newsList[1])).grid(row=1, column=0)
+        newsButton1 = Button(newsFrame, text='보기', command = siteOpen1).grid(row=1, column=1)
+        newsHead2 = Label(newsFrame, text="{}".format(newsList[2])).grid(row=2, column=0)
+        newsButton2 = Button(newsFrame, text='보기', command = siteOpen2).grid(row=2, column=1)
+        newsHead3 = Label(newsFrame, text="{}".format(newsList[3])).grid(row=3, column=0)
+        newsButton3 = Button(newsFrame, text='보기', command = siteOpen3).grid(row=3, column=1)
+        newsHead4 = Label(newsFrame, text="{}".format(newsList[4])).grid(row=4, column=0)
+        newsButton4 = Button(newsFrame, text='보기', command = siteOpen4).grid(row=4, column=1)
+        newsHead5 = Label(newsFrame, text="{}".format(newsList[5])).grid(row=5, column=0)
+        newsButton5 = Button(newsFrame, text='보기', command = siteOpen5).grid(row=5, column=1)
+        newsHead6 = Label(newsFrame, text="{}".format(newsList[6])).grid(row=6, column=0)
+        newsButton6 = Button(newsFrame, text='보기', command = siteOpen6).grid(row=6, column=1)
+        newsHead7 = Label(newsFrame, text="{}".format(newsList[7])).grid(row=7, column=0)
+        newsButton7 = Button(newsFrame, text='보기', command = siteOpen7).grid(row=7, column=1)
+        newsHead8 = Label(newsFrame, text="{}".format(newsList[8])).grid(row=8, column=0)
+        newsButton8 = Button(newsFrame, text='보기', command = siteOpen8).grid(row=8, column=1)
 
     # 뉴스 출력/프레임
     newsLabel = Label(newWindow, text='<<{}월 {}일 오늘의 실시간 인기뉴스>>'.format(month, day))
