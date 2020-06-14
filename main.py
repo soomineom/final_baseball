@@ -7,10 +7,10 @@ import urllib
 
 def createNewWindow():
     newWindow = Toplevel()
-    newCanvas = Canvas(newWindow, height=500, width=700)
+    newCanvas = Canvas(newWindow, height=500, width=800)
     newCanvas.pack()
     titleLabel = Label(newWindow, text='<<{}월 {}일 오늘의 일정/결과>>'.format(mm.get(), dd.get()))
-    titleLabel.place(rely=0.03)
+    titleLabel.place(rely=0.02)
 
     #일정/결과 크롤링
     year_s = str(year)
@@ -74,7 +74,7 @@ def createNewWindow():
             schLabel = Label(resultFrame, text="{}".format(",".join(map(str,final_res[i])))).pack()
 
     resultFrame = Frame(newWindow, bg='#eaeaea')
-    resultFrame.place(relx=0.5, rely=0.09, relwidth=0.9, relheight=0.235, anchor='n')
+    resultFrame.place(relx=0.5, rely=0.08, relwidth=0.9, relheight=0.25, anchor='n')
     get_result()
 
     # 뉴스 크롤링
@@ -96,9 +96,9 @@ def createNewWindow():
 
     # 뉴스 출력/프레임
     newsLabel = Label(newWindow, text='<<{}월 {}일 오늘 실시간 인기뉴스>>'.format(mm.get(), dd.get()))
-    newsLabel.place(rely=0.37)
+    newsLabel.place(rely=0.35)
     newsFrame = Frame(newWindow, bg='#eaeaea')
-    newsFrame.place(relx=0.5, rely=0.43, relwidth=0.9, relheight=0.43, anchor='n')
+    newsFrame.place(relx=0.5, rely=0.41, relwidth=0.9, relheight=0.48, anchor='n')
     newsCrawler()
 
     buttonFrame = Frame(newWindow)
