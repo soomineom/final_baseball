@@ -8,9 +8,9 @@ import webbrowser
 
 def createNewWindow():
     newWindow = Toplevel()
-    newCanvas = Canvas(newWindow, height=500, width=800)
+    newCanvas = Canvas(newWindow, height=500, width=620)
     newCanvas.pack()
-    titleLabel = Label(newWindow, text='<<{}월 {}일 오늘의 일정/결과>>'.format(mm.get(), dd.get()))
+    titleLabel = Label(newWindow, text='<<{}월 {}일의 경기 일정/결과>>'.format(mm.get(), dd.get()))
     titleLabel.place(rely=0.02)
 
     #일정/결과 크롤링
@@ -100,12 +100,12 @@ def createNewWindow():
             def siteOpen(): #해당 뉴스링크 창 열기
                 webbrowser.open(newsLinkList[k])
             newsHead = Label(newsFrame, text="{}".format(newsList[k])).grid(row=k, column=0)
-            newsButton = Button(newsFrame, text='보기').grid(row=k, column=1) #여기서command하면 창이 그냥 다열림
+            newsLinkList[k] = Button(newsFrame, text='보기').grid(row=k, column=1) #여기서command하면 창이 그냥 다열림
             #수정 필요
 
 
     # 뉴스 출력/프레임
-    newsLabel = Label(newWindow, text='<<{}월 {}일 오늘 실시간 인기뉴스>>'.format(month, day))
+    newsLabel = Label(newWindow, text='<<{}월 {}일 오늘의 실시간 인기뉴스>>'.format(month, day))
     newsLabel.place(rely=0.35)
     newsFrame = Frame(newWindow, bg='#eaeaea')
     newsFrame.place(relx=0.5, rely=0.41, relwidth=0.9, relheight=0.48, anchor='n')
@@ -113,7 +113,7 @@ def createNewWindow():
 
     buttonFrame = Frame(newWindow)
     buttonFrame.place(relx=0.2, rely=0.91, relwidth=0.8, relheight=0.05)
-    button1 = Button(buttonFrame, text='순위표 보기',command = theRank)
+    button1 = Button(buttonFrame, text='오늘의 순위표',command = theRank)
     button1.place(relx=0, relwidth=0.3, relheight=1)
     button2 = Button(buttonFrame, text='닫기', command = root.quit)
     button2.place(relx=0.5, relwidth=0.3, relheight=1)
@@ -147,6 +147,7 @@ def theRank():
             rn = re.sub('<.+?>', '', rn, 0).strip()
             rankNumList.append(rn)
 
+    rankLabel0 = Label(rankFrame, text='<<{}월 {}일>>'.format(month, day)).pack()
     rankLabel1 = Label(rankFrame, text="[현재 순위]").pack()
     for k in range(len(rankList)): #순위출력
         rankLabel2 = Label(rankFrame, text="{}위: {}".format(rankNumList[k],rankList[k])).pack()
