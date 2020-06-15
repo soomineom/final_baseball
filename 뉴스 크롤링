@@ -1,0 +1,29 @@
+import requests
+from bs4 import BeautifulSoup
+import re
+
+def newsCrawler():
+  webpage = requests.get('https://sports.news.naver.com/kbaseball/news/index.nhn?isphoto=N&type=popular')
+  soup = BeautifulSoup(webpage.content, 'html.parser')
+  newsList = []
+
+  # 뉴스 헤드라인 가져오기
+  for i in range(10):
+    news = soup.select("#_ranking_news_list_0 > li:nth-child({0})".format(i))
+    for ns in news:
+      ns = str(ns)
+      ns = re.sub('<.+?>', '', ns, 0).strip()
+      newsList.append(ns)
+  #for k in range(len(newsList)):
+    #newsHead = Label(newsFrame, text="{}".format(newsList[k])).pack()
+#https://sports.news.naver.com/news.nhn?oid=477&aid=0000247949
+#https://sports.news.naver.com/kbaseball/news/read.nhn?oid=477&aid=0000247949
+  # 뉴스 링크 가져오기
+  newsLinkList=[]
+  for href in soup.find("ul", class_="aside_news_list").find_all("li"):
+    newsLink = href.find("a")["href"]
+    newsLinkList.append("https://sports.news.naver.com"+newsLink)
+    print("https://sports.news.naver.com"+ newsLink)
+    print(len(newsLinkList))
+
+newsCrawler()
